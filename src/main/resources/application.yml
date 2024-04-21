@@ -1,0 +1,38 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: data-explorer-service
+  webflux:
+    base-path: /data-explorer-service
+  data:
+    neo4j:
+      database: neo4j
+  neo4j:
+    uri: bolt://192.168.7.202:7687
+    authentication:
+      username: neo4j
+      password: P@ssw0rd
+    pool:
+      max-connection-lifetime: 1h
+      max-connection-pool-size: 20
+      metrics-enabled: true
+management:
+  health:
+    neo4j.enable: true
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus ,info
+      path-mapping:
+        prometheus: /prometheus
+        health: /health
+        info: /info
+        metrics: /metrics
+      base-path: /
+  server:
+    port: 18443
+logging:
+  level:
+    root: INFO
