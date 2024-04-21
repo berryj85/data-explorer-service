@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 class AccountController(val accountService: AccountService) {
 
     @PostMapping
-    fun addAccount(@RequestBody accountEntity: AccountEntity): Mono<AccountEntity> {
+    fun saveAccount(@RequestBody accountEntity: AccountEntity): Mono<AccountEntity> {
         return accountService.saveAccount(accountEntity)
     }
 }
